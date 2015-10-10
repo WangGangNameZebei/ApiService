@@ -1,5 +1,5 @@
 //
-//  GSCAppDelegate.h
+//  AppDelegate.h
 //  ApiService
 //
 //  Created by guoshencheng on 10/10/2015.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface GSCAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

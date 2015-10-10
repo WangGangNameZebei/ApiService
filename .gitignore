@@ -18,7 +18,9 @@ profile
 DerivedData
 *.hmap
 *.ipa
-
+Example/Pods
+Example/Podfile.lock
+Example/ExampleServer/node_modules
 # Bundler
 .bundle
 
