@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (WebServer)
+@interface NSDictionary (ApiService)
 
 /**
  * Transform NSDictionary to JSonString

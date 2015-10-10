@@ -21,6 +21,7 @@ DerivedData
 Example/Pods
 Example/Podfile.lock
 Example/ExampleServer/node_modules
+Example/ExampleServer/.idea
 # Bundler
 .bundle
 

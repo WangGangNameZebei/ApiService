@@ -8,7 +8,7 @@
 
 #import "ApiService.h"
 #import "AFNetworking.h"
-#import "NSDictionary+WebServer.h"
+#import "NSDictionary+ApiService.h"
 
 @implementation ApiService
 
@@ -21,7 +21,7 @@
 }
 
 - (void)sendReLoginWithRequest:(ApiRequest *)apiRequest andLoginRequest:(ApiRequest *)reloginRequest {
-    [self sendPostOrPutRequest:reloginRequest withCompletion:^(id data, NSError *error) {
+    [self sendPostRequest:reloginRequest withCompletion:^(id data, NSError *error) {
         if (error) {
             [self sendFailDelegateWithApiRequest:apiRequest andError:error];
         } else {
@@ -68,7 +68,7 @@
             [self sendGetRequest:apiRequest withCompletion:completion];
             break;
         case ApiRequestMethodPost:
-            [self sendPostOrPutRequest:apiRequest withCompletion:completion];
+            [self sendPostRequest:apiRequest withCompletion:completion];
             break;
         case ApiRequestMethodMutipartPost:
             [self sendMutiPartRequest:apiRequest withCompletion:completion];
@@ -77,7 +77,7 @@
             [self sendDeleteRequest:apiRequest withCompletion:completion];
             break;
         case ApiRequestMethodPut:
-            [self sendPostOrPutRequest:apiRequest withCompletion:completion];
+            [self sendPutRequest:apiRequest withCompletion:completion];
             break;
         default:
             break;
@@ -90,11 +90,11 @@
  * To use the function, Url should confirm when ApiRequst Object created
  **/
 - (void)sendGetRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
-    AFHTTPRequestOperationManager *manger = [ApiService createDefaultRequestManger];
-    [manger GET:apiRequest.url parameters:apiRequest.parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResponseObject:responseObject withCompletion:completion];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(nil, error);
+    AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    [manager GET:apiRequest.url parameters:apiRequest.parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         completion(nil, error);
     }];
 }
 
@@ -103,27 +103,36 @@
  * To use the function, Url should confirm when ApiRequst Object created
  **/
 - (void)sendDeleteRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
-    AFHTTPRequestOperationManager *manger = [ApiService createDefaultRequestManger];
-    [manger DELETE:apiRequest.url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResponseObject:responseObject withCompletion:completion];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    [manager DELETE:apiRequest.url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(nil, error);
     }];
 }
 
 /**
- * The Function send a Post or Put Requst
- * It will auto juge Post or Put type by ApiRequest.method and transform paramter into JSon and add it into body
+ * The Function send a Post Requst
  **/
-- (void)sendPostOrPutRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
-    AFHTTPRequestOperationManager *manger = [ApiService createDefaultRequestManger];
-    NSMutableURLRequest *request = [ApiService createRequestWithApiRequest:apiRequest];
-    NSOperation *operation = [manger HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResponseObject:responseObject withCompletion:completion];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+- (void)sendPostRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
+    AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    [manager POST:apiRequest.url parameters:apiRequest.parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(nil, error);
     }];
-    [manger.operationQueue addOperation:operation];
+}
+
+/**
+ * The Function send a Put Requst
+ **/
+- (void)sendPutRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
+    AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    [manager PUT:apiRequest.url parameters:apiRequest.parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(nil, error);
+    }];
 }
 
 /**
@@ -131,15 +140,19 @@
  * It will auto juge path or filedata type by ApiRequst.files or paths and append those into formdata
  **/
 - (void)sendMutiPartRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
-    AFHTTPRequestOperationManager *manger = [ApiService createDefaultRequestManger];
-    [manger POST:apiRequest.url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:apiRequest.url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [ApiService appendFormDataWithApiRequest:apiRequest andFormData:formData];
-        //[formData appendPartWithFormData:[[apiRequest.parameters toJsonString] dataUsingEncoding:NSUTF8StringEncoding] name:@"paramter"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResponseObject:responseObject withCompletion:completion];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(nil, error);
+    } error:nil];
+    NSProgress *progress = nil;
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            completion(nil, error);
+        } else {
+            completion(responseObject, error);
+        }
     }];
+    [uploadTask resume];
 }
 
 #pragma mark - PrivateTools
@@ -157,40 +170,19 @@
 }
 
 + (void)appendFormDataWithApiRequest:(ApiRequest *)apiRequest andFormData:(id<AFMultipartFormData>) formData {
-    if (apiRequest.files && apiRequest.files.count > 0) {
-        [ApiService appendFormDataWithFiles:apiRequest.files andFormData:formData];
-    }
-    if (apiRequest.paths && apiRequest.paths.count > 0) {
-        [ApiService appendFormDataWithPath:apiRequest.paths andFormData:formData];
-    }
-}
-
-+ (void)appendFormDataWithFiles:(NSArray *)files andFormData:(id<AFMultipartFormData>) formData {
-    for (int i = 0; i < files.count; i ++) {
-        [formData appendPartWithFileData:[files objectAtIndex:i] name:[NSString stringWithFormat:@"%@%d", @"file_", i] fileName:[NSString stringWithFormat:@"%@%d", @"file_", i] mimeType:@"png"];
+    for (int i = 0; i < apiRequest.files.count; i ++) {
+        if ([[apiRequest.files objectAtIndex:i] isKindOfClass:[NSData class]]) {
+            [formData appendPartWithFileData:[apiRequest.files objectAtIndex:i] name:[NSString stringWithFormat:@"%@%d", @"file_", i] fileName:[NSString stringWithFormat:@"%@%d", @"file_", i] mimeType:@"png"];
+        } else if ([[apiRequest.files objectAtIndex:i] isKindOfClass:[NSString class]]) {
+            [formData appendPartWithFileURL:[NSURL fileURLWithPath:[apiRequest.files objectAtIndex:i]] name:[NSString stringWithFormat:@"%@%d", @"file_", i] fileName:[NSString stringWithFormat:@"%@%d", @"file_", i] mimeType:@"image/jpeg" error:nil];
+        }
     }
 }
 
-+ (void)appendFormDataWithPath:(NSArray *)paths andFormData:(id<AFMultipartFormData>) formData {
-    for (int i = 0; i < paths.count; i ++) {
-        [formData appendPartWithFileURL:[paths objectAtIndex:i] name:[NSString stringWithFormat:@"%@%d", @"file_for_path_", i] error:nil];
-    }
-}
-
-+ (AFHTTPRequestOperationManager *)createDefaultRequestManger {
-    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
-    manger.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manger.responseSerializer = [AFHTTPResponseSerializer serializer];
-    return manger;
-}
-
-+ (NSMutableURLRequest *)createRequestWithApiRequest:(ApiRequest *)apiRequest {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:apiRequest.url]];
-    [request setHTTPMethod:((apiRequest.method == ApiRequestMethodPost) ? @"POST": @"PUT")];
-    [request setValue:@"application/x-www-form-urlencoded"
-   forHTTPHeaderField:@"Contsetent-Type"];
-    [request setHTTPBody:[[apiRequest.parameters toJsonString] dataUsingEncoding:NSUTF8StringEncoding]];
-    return request;
++ (AFHTTPSessionManager *)createDefaultRequestmanager {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    return manager;
 }
 
 @end

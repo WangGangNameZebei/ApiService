@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-wv-kYc">
+                    <rect key="frame" x="25" y="60" width="550" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.90588235289999997" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="0rJ-cz-Ti6"/>
+                    </constraints>
+                    <state key="normal" title="GET METHOD">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickGetButton:" destination="-1" eventType="touchUpInside" id="Qf2-uB-L0l"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-5h-cAN">
+                    <rect key="frame" x="25" y="140" width="550" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.90588235289999997" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="g4h-Tc-VcT"/>
+                    </constraints>
+                    <state key="normal" title="POST METHOD">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickPostButton:" destination="-1" eventType="touchUpInside" id="AH2-Cz-NLC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8H-n6-RVz">
+                    <rect key="frame" x="25" y="220" width="550" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.90588235289999997" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="y3j-j0-N45"/>
+                    </constraints>
+                    <state key="normal" title="PUT METHOD">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickPutButton:" destination="-1" eventType="touchUpInside" id="lbS-6h-bNb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tu4-Gf-IJI">
+                    <rect key="frame" x="25" y="300" width="550" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.90588235289999997" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="yW2-gD-U3p"/>
+                    </constraints>
+                    <state key="normal" title="DELETE METHOD">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickDeleteButton:" destination="-1" eventType="touchUpInside" id="GPa-wO-d9u"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvf-U8-3Jg">
+                    <rect key="frame" x="25" y="380" width="550" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.90588235289999997" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="VwZ-aE-muj"/>
+                    </constraints>
+                    <state key="normal" title="MULTIPARTY METHOD">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="Multiparty:" destination="-1" eventType="touchUpInside" id="qeI-CL-NyU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tu4-Gf-IJI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="9lB-m6-bH7"/>
+                <constraint firstAttribute="trailing" secondItem="jOR-wv-kYc" secondAttribute="trailing" constant="25" id="Cad-hp-9LD"/>
+                <constraint firstAttribute="trailing" secondItem="nqe-5h-cAN" secondAttribute="trailing" constant="25" id="Fxu-VS-iIF"/>
+                <constraint firstItem="cvf-U8-3Jg" firstAttribute="top" secondItem="tu4-Gf-IJI" secondAttribute="bottom" constant="30" id="KgW-u6-6J2"/>
+                <constraint firstItem="jOR-wv-kYc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="KwG-Qe-r9P"/>
+                <constraint firstAttribute="trailing" secondItem="D8H-n6-RVz" secondAttribute="trailing" constant="25" id="Nu2-KL-MeQ"/>
+                <constraint firstItem="jOR-wv-kYc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="Qzn-mR-svi"/>
+                <constraint firstAttribute="trailing" secondItem="tu4-Gf-IJI" secondAttribute="trailing" constant="25" id="YXX-TW-qAL"/>
+                <constraint firstItem="D8H-n6-RVz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="afP-NQ-6h0"/>
+                <constraint firstItem="nqe-5h-cAN" firstAttribute="top" secondItem="jOR-wv-kYc" secondAttribute="bottom" constant="30" id="bIW-Zd-mxD"/>
+                <constraint firstItem="tu4-Gf-IJI" firstAttribute="top" secondItem="D8H-n6-RVz" secondAttribute="bottom" constant="30" id="fhV-a3-7tm"/>
+                <constraint firstAttribute="trailing" secondItem="cvf-U8-3Jg" secondAttribute="trailing" constant="25" id="lVH-wg-DGP"/>
+                <constraint firstItem="nqe-5h-cAN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="m4O-KJ-kpC"/>
+                <constraint firstItem="cvf-U8-3Jg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="ob3-GT-y9Z"/>
+                <constraint firstItem="D8H-n6-RVz" firstAttribute="top" secondItem="nqe-5h-cAN" secondAttribute="bottom" constant="30" id="xda-Bq-Ham"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1F6DF9379840E6987F46D1C9 /* Pods_ApiService_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A8A669DF2A85009198B94E /* Pods_ApiService_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2E988C891BC8C79200CB07D6 /* SF.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E988C881BC8C79200CB07D6 /* SF.png */; settings = {ASSET_TAGS = (); }; };
+		2EDD9F2E1BC8DA3300C3D4C9 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDD9F2C1BC8DA3300C3D4C9 /* DemoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		2EDD9F2F1BC8DA3300C3D4C9 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EDD9F2D1BC8DA3300C3D4C9 /* DemoViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2EDD9F321BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDD9F311BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.m */; settings = {ASSET_TAGS = (); }; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -35,6 +39,12 @@
 
 /* Begin PBXFileReference section */
 		086A201A5404F5823221C994 /* ApiService.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ApiService.podspec; path = ../ApiService.podspec; sourceTree = "<group>"; };
+		2E988C881BC8C79200CB07D6 /* SF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SF.png; sourceTree = "<group>"; };
+		2EDD9F2B1BC8DA3300C3D4C9 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		2EDD9F2C1BC8DA3300C3D4C9 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		2EDD9F2D1BC8DA3300C3D4C9 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
+		2EDD9F301BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ApiRequest+BuildFactory.h"; sourceTree = "<group>"; };
+		2EDD9F311BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ApiRequest+BuildFactory.m"; sourceTree = "<group>"; };
 		4D20E2ED0AB307B6F2F830BF /* Pods-ApiService_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiService_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApiService_Example/Pods-ApiService_Example.release.xcconfig"; sourceTree = "<group>"; };
 		58BBD10138CBC0AB080698AE /* Pods-ApiService_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiService_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApiService_Example/Pods-ApiService_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ApiService_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiService_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +148,11 @@
 			children = (
 				6003F59C195388D20070C39A /* AppDelegate.h */,
 				6003F59D195388D20070C39A /* AppDelegate.m */,
+				2EDD9F301BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.h */,
+				2EDD9F311BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.m */,
+				2EDD9F2B1BC8DA3300C3D4C9 /* DemoViewController.h */,
+				2EDD9F2C1BC8DA3300C3D4C9 /* DemoViewController.m */,
+				2EDD9F2D1BC8DA3300C3D4C9 /* DemoViewController.xib */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -148,6 +163,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E988C881BC8C79200CB07D6 /* SF.png */,
 				6003F595195388D20070C39A /* ApiService-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -270,6 +286,8 @@
 			files = (
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				2E988C891BC8C79200CB07D6 /* SF.png in Resources */,
+				2EDD9F2F1BC8DA3300C3D4C9 /* DemoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +399,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EDD9F2E1BC8DA3300C3D4C9 /* DemoViewController.m in Sources */,
 				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
+				2EDD9F321BC8DCAE00C3D4C9 /* ApiRequest+BuildFactory.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
