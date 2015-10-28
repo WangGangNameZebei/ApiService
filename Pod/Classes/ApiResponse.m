@@ -10,29 +10,22 @@
 
 @implementation ApiResponse
 
-+ (instancetype)responseWithDictionary:(NSDictionary *)dictionary error:(NSError **)error {
-    ApiResponse *response = [[self alloc] init];
-    if (![dictionary isKindOfClass:[NSDictionary class]]) {
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:NotDictionaryFailed userInfo:@{NSLocalizedDescriptionKey : @"return data is not a class of dictionary"}];
-    } else  {
-        response.version = [[dictionary objectForKey:@"version"] floatValue];
-        response.encoding = [dictionary objectForKey:@"encoding"];
-        response.errorCode = [dictionary objectForKey:@"errorCode"];
-        response.errorMsg = [dictionary objectForKey:@"errorMsg"];
-        response.entity = [dictionary objectForKey:@"entity"];
-        if (!response.entity) {
-            NSDictionary *feed = [dictionary objectForKey:@"feed"];
-            response.entities = [feed objectForKey:@"entities"];
-        }
+- (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError *__autoreleasing *)err {
+    self = [super init];
+    if (self) {
+        self.version = dictionary[@"version"];
+        self.encoding = dictionary[@"encoding"];
+        self.errorCode = dictionary[@"errorCode"];
+        self.errorMsg = dictionary[@"errorMsg"];
+        err = nil;
+        self.entity = [[Entity alloc] initWithDictionary:dictionary[@"entity"] error:err];
+        self.feed = [[Feed alloc] initWithDictionary:dictionary[@"feed"] error:err];
     }
-    return response;
+    return self;
 }
 
 - (BOOL)success {
-    return [self.errorCode integerValue] == 200;
-}
-- (BOOL)sessionTimeout {
-    return [self.errorCode integerValue] == 4096;
+    return [self.errorCode isEqualToString:@"200"];
 }
 
 @end

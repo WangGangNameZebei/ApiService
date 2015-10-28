@@ -25,7 +25,7 @@
         if (error) {
             [self sendFailDelegateWithApiRequest:apiRequest andError:error];
         } else {
-            ApiResponse *apiResponse = [ApiResponse responseWithDictionary:data error:&error];
+            ApiResponse *apiResponse = [[ApiResponse alloc] initWithDictionary:data error:&error];
             if (error) {
                 [self sendFailDelegateWithApiRequest:apiRequest andError:error];
             } else {
@@ -42,7 +42,7 @@
         if (error) {
             [self sendFailDelegateWithApiRequest:apiRequest andError:error];
         } else {
-            ApiResponse *apiResponse = [ApiResponse responseWithDictionary:dictionary error:&error];
+            ApiResponse *apiResponse = [[ApiResponse alloc] initWithDictionary:dictionary error:&error];
             if (!error) {
                 if ([self.delegate respondsToSelector:@selector(service:didFinishRequest:withResponse:)]) {
                     [self.delegate service:self didFinishRequest:apiRequest withResponse:apiResponse];

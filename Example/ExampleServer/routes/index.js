@@ -9,14 +9,23 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/example', function(req, res, next) {
-    res.json(getPack([{ method: 'GET' }]))
+router.get('/example/1', function(req, res, next) {
+    res.json(getPack([{ method: 'GET1' }, {method: 'GET2'},  {method: 'GET3'},  {method: 'GET4'}]))
 });
 
-router.post('/example', function(req, res, next) {
+router.get('/example/2', function(req, res, next) {
+	res.json(postPack({method :'GET'}))
+});
+
+router.post('/example/1', function(req, res, next) {
     console.log(req.body);
     res.json(postPack({method: 'POST'}));
 });
+
+router.post('/example/2', function (req, res, next) {
+	console.log(req.body);
+	res.json(getPack([{method : 'POST'}]));
+})
 
 router.post('/upload', multipartMiddleware, function(req, res) {
     console.log(req.body, req.files);
@@ -40,13 +49,21 @@ router.delete('/example', function(req, res, next){
 })
 
 function getPack(data) {
+	var a = new Array();
+	for (var index in data) {
+		a[index] = {
+			id : "/example/" + index,
+			model:data[index]
+		}
+	}
     return {
         version:"1.0",
         encoding:"UTF-8",
         errorCode:"200",
-        errorMsg: "OK",
-        feed: {
-            entities: data
+        errorMsg: "100000",
+		feed: {
+			id: "/example",
+            entities: a
         }
     }
 }
@@ -57,7 +74,10 @@ function postPack(data) {
         encoding:"UTF-8",
         errorCode:"200",
         errorMsg: "OK",
-        entity: data
+		entity: {
+			id:"/example",
+			model:data
+		}
     }
 }
 

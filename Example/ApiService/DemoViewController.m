@@ -41,8 +41,8 @@
 }
 
 - (void)service:(ApiService *)service didFinishRequest:(ApiRequest *)request withResponse:(ApiResponse *)response {
-    if (response.entities) {
-        NSLog(@"%@", response.entities);
+    if (response.feed) {
+        NSLog(@"%@", response.feed);
     } else if(response.entity) {
         NSLog(@"%@", response.entity);
     } else {

@@ -6,7 +6,7 @@
 //  Copyright © 2015 guoshencheng. All rights reserved.
 //
 
-#import <ApiService/ApiService.h>
+#import "ApiService.h"
 
 @interface ApiRequest (BuildFactory)
 

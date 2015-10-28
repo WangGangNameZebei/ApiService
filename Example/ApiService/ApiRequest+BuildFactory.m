@@ -13,14 +13,14 @@
 
 + (instancetype)requestForGet {
     ApiRequest *request = [ApiRequest defaultRequest];
-    request.url = @"http://127.0.0.1:3000/example";
+    request.url = @"http://127.0.0.1:3000/example/1";
     request.parameters = nil;
     return request;
 }
 
 + (instancetype)requestForPost {
     ApiRequest *request = [ApiRequest defaultRequest];
-    request.url = @"http://127.0.0.1:3000/example";
+    request.url = @"http://127.0.0.1:3000/example/2";
     request.method = ApiRequestMethodPost;
     request.parameters = [@{@"example" : @"post example"} toWebServerParameters];
     return request;

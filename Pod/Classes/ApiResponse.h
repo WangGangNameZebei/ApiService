@@ -18,35 +18,20 @@
  }
  **/
 
-#import <UIKit/UIKit.h>
+#import "JSONModel.h"
+#import "Feed.h"
+#import "Entity.h"
 
-typedef enum {
-    NotDictionaryFailed = -1000,
-    
-} WebServerErrorFailed;
+@interface ApiResponse : JSONModel
 
-@interface ApiResponse : NSObject
+@property (strong, nonatomic) NSString *version;
+@property (strong, nonatomic) NSString *encoding;
+@property (strong, nonatomic) NSString *errorCode;
+@property (strong, nonatomic) NSString *errorMsg;
+@property (strong, nonatomic) Feed *feed;
+@property (strong, nonatomic) Entity *entity;
 
-@property (nonatomic, assign) CGFloat version;
-@property (nonatomic, strong) NSString *encoding;
-@property (nonatomic, strong) NSArray *entities;
-@property (nonatomic, strong) NSNumber *errorCode;
-@property (nonatomic, strong) NSString *errorMsg;
-@property (nonatomic, strong) NSDictionary *entity;
-
-/**
- * a Create Function Explan Dictionary into ApiResponse
- **/
-+ (instancetype)responseWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
-
-/**
- * juge if success by errorCode
- **/
+- (id)initWithDictionary:(NSDictionary*)d error:(NSError *__autoreleasing *)err;
 - (BOOL)success;
-
-/**
- * juge if sessionTimeout by errorCode
- **/
-- (BOOL)sessionTimeout;
 
 @end

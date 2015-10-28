@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F6DF9379840E6987F46D1C9 /* Pods_ApiService_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A8A669DF2A85009198B94E /* Pods_ApiService_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1F6DF9379840E6987F46D1C9 /* Pods_ApiService_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A8A669DF2A85009198B94E /* Pods_ApiService_Example.framework */; };
 		2E988C891BC8C79200CB07D6 /* SF.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E988C881BC8C79200CB07D6 /* SF.png */; settings = {ASSET_TAGS = (); }; };
 		2EDD9F2E1BC8DA3300C3D4C9 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDD9F2C1BC8DA3300C3D4C9 /* DemoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		2EDD9F2F1BC8DA3300C3D4C9 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EDD9F2D1BC8DA3300C3D4C9 /* DemoViewController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -24,7 +24,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		C2D7A51CBE9046D94AD056A1 /* Pods_ApiService_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842F6E4743E123CAEA6FE983 /* Pods_ApiService_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C2D7A51CBE9046D94AD056A1 /* Pods_ApiService_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842F6E4743E123CAEA6FE983 /* Pods_ApiService_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
