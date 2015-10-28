@@ -116,6 +116,7 @@
  **/
 - (void)sendPostRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
     AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:apiRequest.url parameters:apiRequest.parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(responseObject, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -128,6 +129,7 @@
  **/
 - (void)sendPutRequest:(ApiRequest *)apiRequest withCompletion:(void (^)(id data, NSError *error))completion {
     AFHTTPSessionManager *manager = [ApiService createDefaultRequestmanager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager PUT:apiRequest.url parameters:apiRequest.parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(responseObject, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -182,6 +184,7 @@
 + (AFHTTPSessionManager *)createDefaultRequestmanager {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+   
     return manager;
 }
 
